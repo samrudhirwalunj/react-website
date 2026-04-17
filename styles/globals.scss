@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+body {
+    display: block;
+    margin: 0;
+}
+.header {
+  background: #111;
+  color: #fff;
+  padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: background 0.3s ease;
+
+  &.scrolled {
+    background: rgba(17, 17, 17, 0.95);
+    backdrop-filter: blur(8px);
+  }
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* LOGO FIX (IMPORTANT) */
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+
+  .logo-img {
+    display: block;
+    transition: all 0.3s ease;
+    &.large {
+      width: 153px;
+      height: 40px;
+      opacity: 1;
+    }
+    &.small {
+      width: 120px;
+      height: 32px;
+      opacity: 0.85;
+    }
+  }
+
+  /* NAV */
+  .nav {
+    a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #fff;
+      transition: 0.3s;
+
+      &:hover {
+        color: #aaa;
+      }
+    }
+
+    &.desktop {
+      display: flex;
+    }
+
+    &.mobile {
+      display: none;
+      flex-direction: column;
+      padding-top: 10px;
+
+      a {
+        padding: 12px 0;
+        border-top: 1px solid #333;
+      }
+
+      &.open {
+        display: flex;
+      }
+    }
+  }
+
+  /* HAMBURGER */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+    background: none;
+    border: none;
+
+    span {
+      width: 26px;
+      height: 3px;
+      background: #fff;
+      margin: 4px 0;
+      transition: 0.3s ease;
+    }
+
+    &.active {
+      span:nth-child(1) {
+        transform: translateY(10px)rotate(45deg);
+      }
+
+      span:nth-child(2) {
+        opacity: 0;
+      }
+
+      span:nth-child(3) {
+        transform: translateY(-12px)rotate(-45deg);
+      }
+    }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .nav.desktop {
+      display: none;
+    }
+
+    .hamburger {
+      display: flex;
+    }
+  }
+}
