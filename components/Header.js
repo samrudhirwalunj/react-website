@@ -33,8 +33,8 @@ export default function Header() {
         {/* Desktop Nav */}
         <nav className="nav desktop">
           <Link href="/">Home</Link>
-          <Link href="/tabs">Tabs</Link>
-          <Link href="/contact">Contact</Link>
+          <Link href="#">Tabs</Link>
+          <Link href="#">Contact</Link>
         </nav>
 
         {/* Hamburger */}
