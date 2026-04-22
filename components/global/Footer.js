@@ -1,6 +1,6 @@
  
 
-import '../styles/footer.scss';
+import '../../styles/footer.scss';
 const footerLinks = {
   Product: ["Features", "Pricing", "Security", "Roadmap", "Changelog"],
   Company: ["About", "Blog", "Careers", "Press", "Partners"],
@@ -17,7 +17,7 @@ const footerLinks = {
 export default function Footer() {
   return (
     <footer className="border-t border-slate-800 bg-slate-950/50 backdrop-blur-sm">
-      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
         {/* Main footer content - hidden on mobile, visible on sm and up */}
         <div className="hidden sm:grid sm:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8 lg:gap-12 mb-8 sm:mb-12">
           <div className="col-span-1 sm:col-span-3 lg:col-span-2 text-center sm:text-left">

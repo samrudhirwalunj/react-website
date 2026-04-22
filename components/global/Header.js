@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import '../styles/header.scss';
+import '../../styles/header.scss';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,8 +16,9 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   return (
-    <header className="header">
-      <div className="container">
+   <header
+      className={`header  ${scrolled ? "sticky" : "normal"}`} >
+      <div className="container max-w-7xl mx-auto py-4">
         <div className="flex items-center space-x-1 group cursor-pointer">
             <img
               src="/logo.png"
