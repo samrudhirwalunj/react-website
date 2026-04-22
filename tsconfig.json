@@ -23,7 +23,6 @@
       "@components/*": ["components/*"],
       "@/*": ["*"]
     },
-    "ignoreDeprecations": "6.0"  // Ignore deprecation warning temporarily
   },
   "include": [
     "next-env.d.ts",
