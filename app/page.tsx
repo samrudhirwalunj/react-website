@@ -54,6 +54,18 @@ export default function Home() {
         grid="md:grid-cols-4"
       />
 
+              <TextMedia
+        // superscript="Demo"
+        subheading="WHAT WE DO"
+        heading="Technology solutions that move Pittsburgh businesses forward."
+        description="Managed by a team that has been doing this in Pittsburgh since 2001." 
+        mediaType="image"
+        mediaSrc="/Images/JenlorCollage2026.webp"
+        mediaPosition="bottom"
+        
+         className="abt-section"
+      />
+
         <TextMedia
         // superscript="Demo"
         subheading="MANAGED IT & SUPPORT"
@@ -64,6 +76,19 @@ export default function Home() {
         mediaType="image"
         mediaSrc="/Images/ManagedHD.webp"
         mediaPosition="right"
+
+      />
+
+      <TextMedia
+        // superscript="Demo"
+        subheading="CYBERSECURITY & COMPLIANCE"
+        heading="Fortify your defenses against modern cyber threats."
+        description="Data breaches target businesses of every size, and hoping for the best is not a cybersecurity strategy. JENLOR wraps your organization in advanced threat protection, Zero Trust architecture, and compliance frameworks designed to keep you audit-ready, cyber-insured, and secure."
+        ctaLabel="Explore Managed IT →"
+        ctaLink="#"
+        mediaType="image"
+        mediaSrc="/Images/CyberGRC.webp"
+        mediaPosition="left"
       />
 
       <Bucket

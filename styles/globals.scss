@@ -1,11 +1,16 @@
-@import "tailwindcss";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url("tailwindcss");
+// @tailwind base;
+// @tailwind components;
+// @tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
 
 body {
     display: block;
     margin: 0;
+        background-color: #080808;
 }
 .header {
   background: #111;
@@ -80,7 +85,25 @@ body {
       }
     }
   }
+.dropdown-menu {
+  z-index: 50;
+}
 
+.dropdown {
+  position: relative;
+}
+.dropdown-menu {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
+
+.group:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
   /* HAMBURGER */
   .hamburger {
     display: none;
@@ -201,4 +224,25 @@ body {
 border-right: 1px solid rgba(128, 128, 128, 0.247);
 }
     }
+}
+
+
+.media-wrap {
+    padding: 2rem;
+    border: 1px solid;
+    border-radius: 10px;
+    border-color: color-mix(in oklab, white 10%, transparent);
+    background: oklab(69.5873% -.142158 .0448781 / .1);
+}
+
+
+.abt-section .relative.w-full.max-w-\[400px\].h-\[480px\] {
+    max-width: 800px;
+    height: 300px;
+}
+
+.active-btn {
+    background: #3b82f633;
+    border: 1px solid #3b82f666;
+    box-shadow: inset 0 1px #fff3, 0 10px 25px -5px #3b82f64d;
 }

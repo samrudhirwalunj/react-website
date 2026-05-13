@@ -6,7 +6,7 @@ import '../styles/globals.scss'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
-    <html>
+    <html lang="en" data-scroll-behavior="smooth">
       <body>
         <Header />
         <main>{children}</main>

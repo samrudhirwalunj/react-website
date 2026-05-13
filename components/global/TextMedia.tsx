@@ -1,7 +1,8 @@
 'use client';
 
-import Image from "next/image";
-import React from "react";
+import Image from "next/image"; 
+import clsx from "clsx";
+
 
 type MediaPosition =
   | "left"
@@ -29,7 +30,6 @@ function TextMedia({
   superscript,
   description,
   ctaLabel,
-  ctaLink,
   mediaType = "image",
   mediaSrc,
   mediaPosition = "right",
@@ -37,72 +37,58 @@ function TextMedia({
 }: TextMediaProps) {
 
   const isSide = mediaPosition === "left" || mediaPosition === "right";
-  const isTop = mediaPosition === "top";
-  const isBottom = mediaPosition === "bottom";
-  const isCenter = mediaPosition === "center";
+
+  /* ✅ Dynamic layout */
+  const containerClass = isSide
+    ? "grid md:grid-cols-5 items-center gap-10"
+    : "flex flex-col items-center text-center gap-6";
+
+  /* ✅ Order control */
+  const mediaOrder =
+    mediaPosition === "left" ? "md:order-1" :
+    mediaPosition === "right" ? "md:order-2" :
+    mediaPosition === "top" ? "order-1" :
+    mediaPosition === "bottom" ? "order-2" :
+    "order-2"; // center
+
+  const textOrder =
+    mediaPosition === "left" ? "md:order-2" :
+    mediaPosition === "right" ? "md:order-1" :
+    mediaPosition === "top" ? "order-2" :
+    mediaPosition === "bottom" ? "order-1" :
+    "order-1";
 
   return (
     <section className={`w-full bg-black text-white py-12 ${className}`}>
-      <div
-        className={`
-          max-w-7xl mx-auto px-6 gap-10 items-center
-          ${isSide ? "grid md:grid-cols-5" : "flex flex-col"}
-          ${isCenter ? "text-center items-center" : ""}
-        `}
-      >
+      <div className={`max-w-7xl mx-auto px-6 ${containerClass}`}>
 
-        {/* MEDIA TOP */}
-        {isTop && <Media mediaType={mediaType} mediaSrc={mediaSrc} />}
-
-        {/* SIDE LEFT */}
-        {isSide && mediaPosition === "left" && (
-          <div className="md:col-span-2">
+        {/* ✅ MEDIA (only once) */}
+        <div
+          className={`
+            ${isSide ? "md:col-span-2 flex justify-center media-wrap" : "w-full flex justify-center"}
+            ${mediaOrder}
+          `}
+        >
+          <div className="relative w-full max-w-[400px] h-[480px]">
             <Media mediaType={mediaType} mediaSrc={mediaSrc} />
           </div>
-        )}
+        </div>
 
-        {/* TEXT (3/5) */}
-        {isSide && (
-          <div className={`md:col-span-3 ${isCenter ? "max-w-2xl mx-auto" : ""}`}>
-            <Content
-              superscript={superscript}
-              subheading={subheading}
-              heading={heading}
-              description={description}
-              ctaLabel={ctaLabel}
-              ctaLink={ctaLink}
-            />
-          </div>
-        )}
-
-        {/* SIDE RIGHT MEDIA */}
-        {isSide && mediaPosition === "right" && (
-          <div className="md:col-span-2">
-            <Media mediaType={mediaType} mediaSrc={mediaSrc} />
-          </div>
-        )}
-
-        {/* MEDIA BOTTOM */}
-        {isBottom && <Media mediaType={mediaType} mediaSrc={mediaSrc} />}
-
-        {/* CENTER */}
-        {isCenter && (
-          <div className="mt-8 w-full max-w-3xl">
-            <Media mediaType={mediaType} mediaSrc={mediaSrc} />
-          </div>
-        )}
-
-        {/* TEXT ONLY LAYOUT (top/bottom/center fallback) */}
-        {!isSide && (
+        {/* ✅ TEXT */}
+        <div
+          className={`
+            ${isSide ? "md:col-span-3" : "max-w-2xl"}
+            ${textOrder}
+          `}
+        >
           <Content
             superscript={superscript}
             subheading={subheading}
             heading={heading}
             description={description}
             ctaLabel={ctaLabel}
-            ctaLink={ctaLink}
           />
-        )}
+        </div>
 
       </div>
     </section>
@@ -111,7 +97,7 @@ function TextMedia({
 
 export default TextMedia;
 
-/* ---------------- TEXT BLOCK (reusable) ---------------- */
+/* ---------------- TEXT ---------------- */
 
 function Content({
   heading,
@@ -162,26 +148,27 @@ function Media({
   mediaType: "image" | "video";
   mediaSrc: string;
 }) {
+
+  if (mediaType === "image") {
+    return (
+      <Image
+        src={mediaSrc}
+        alt="media"
+        fill
+         sizes="(max-width: 768px) 100vw, 375px"
+        className="object-cover rounded-2xl shadow-2xl"
+      />
+    );
+  }
+
   return (
-    <div className="w-full">
-      {mediaType === "image" ? (
-        <Image
-          src={mediaSrc}
-          alt="media"
-          width={600}
-          height={400}
-          className="rounded-lg object-cover w-full h-auto"
-        />
-      ) : (
-        <video
-          src={mediaSrc}
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="rounded-lg w-full h-auto"
-        />
-      )}
-    </div>
+    <video
+      src={mediaSrc}
+      autoPlay
+      muted
+      loop
+      playsInline
+      className="w-full h-full object-cover rounded-2xl"
+    />
   );
 }
